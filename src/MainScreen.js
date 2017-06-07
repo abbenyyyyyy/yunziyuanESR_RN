@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Button, Image } from 'react-native';
-import { StackNavigator, TabNavigator, TabBarBottom } from 'react-navigation';
+import { StackNavigator, TabNavigator, TabBarTop  } from 'react-navigation';
 
 import appIcon from './images/app_icon.png';
 import AllMoviesScreen from './AllMoviesScreen';
@@ -11,7 +11,8 @@ import ChineseMoviesScreen from './ChineseMoviesScreen';
 export default class MainScreen extends Component {
     static navigationOptions = {
         headerTitle: '云资源ESR',
-        headerStyle: { backgroundColor: '#4ECBFC' },
+        headerTitleStyle:{color:'#fff'},
+        headerStyle: { backgroundColor: '#512DA8' },
         headerLeft: <Image source={appIcon} style={{ width: 35, height: 35, marginLeft: 10 }} />,
     };
     render() {
@@ -59,10 +60,19 @@ const Tab = TabNavigator(
         }
     },
     {
+        tabBarComponent: TabBarTop ,
         tabBarPosition: 'bottom',
         swipeEnabled: true,
-        animationEnabled: true,
+        animationEnabled: false,
         lazy: true,
+        tabBarOptions: {
+            activeTintColor: '#fff',
+            inactiveTintColor:'#757575',
+            scrollEnabled :false,
+            style: {
+                backgroundColor: '#673AB7',
+            }
+        },
     }
 );
 

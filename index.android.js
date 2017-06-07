@@ -9,7 +9,7 @@ import { AppRegistry } from 'react-native';
 
 import App from './src/App';
 
-export default class yuanziyuanESR_RN extends Component {
+export default class yunziyuanESR_RN extends Component {
   render() {
     return (
      <App/>
@@ -17,4 +17,4 @@ export default class yuanziyuanESR_RN extends Component {
   }
 }
 
-AppRegistry.registerComponent('yuanziyuanESR_RN', () => yuanziyuanESR_RN);
+AppRegistry.registerComponent('yunziyuanESR_RN', () => yunziyuanESR_RN);
