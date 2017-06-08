@@ -1,63 +1,68 @@
 import React, { PureComponent } from 'react';
-import { StyleSheet, View, Text, Image, FlatList, Dimensions } from 'react-native';
+import { StyleSheet, TouchableOpacity, Text, Image, FlatList, Dimensions } from 'react-native';
 
-export default class AllMoviesScreen extends PureComponent{
-    
-    constructor(props){
-        super(props);
-        this.state={
-            listData:IMAGE_DATA
-        }
+
+export default class AllMoviesScreen extends PureComponent {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      listData: IMAGE_DATA
     }
+  }
 
-    _keyExtractor=(item, index) => item.name;
 
-    _renderIten = ({item}) => {
-        // let imgWidth = Dimensions.get('window').width/2;
-        // let imgHeight = imgWidth*item.imageOfMovieHeight / item.imageOfMovieWidth;
-        // <Image source={{uri:item.imageOfMovie}} style={{width:imgWidth,height:imgHeight}}/>
-        return(
-        <View style={styles.viewStyle}>
-            <Image source={{uri:item.imageOfMovie}} style={styles.imgStyle}/>
-            <Text style={styles.textStyle}>{item.name}</Text>
-        </View>
-        )
-    };
+  _keyExtractor = (item, index) => item.name;
 
-    render(){
-        return(
-            <View>
-                <FlatList
-                    data={this.state.listData}
-                    numColumns={2}
-                    keyExtractor={this._keyExtractor}
-                    renderItem={this._renderIten}
-                />
-            </View>
-        );
-    }
+  _renderIten = ({ item }) => {
+    return (
+      <TouchableOpacity style={styles.viewStyle} activeOpacity={0.8} onPress={()=>{this.props.navigation.navigate('MovieDetailsScreen',{item:item})}}>
+        <Image source={{ uri: item.imageOfMovie }} style={styles.imgStyle} />
+        <Text style={styles.textStyle}>{item.name}</Text>
+      </TouchableOpacity>
+    )
+  };
+
+  _onPressItem (item){
+      //  alert(item.name)
+      this.props.navigation.navigate('Order')
+  };
+
+
+  render() {
+    return (
+
+      <FlatList
+        data={this.state.listData}
+        numColumns={2}
+        keyExtractor={this._keyExtractor}
+        renderItem={this._renderIten}
+      />
+
+    );
+  }
 }
 
 const styles = StyleSheet.create({
-    viewStyle:{
-      borderColor:'#efefef',
-      borderStyle :('solid'),
-      borderWidth :1
-    },
-    imgStyle: {
-            // 设置宽度
-            width:Dimensions.get('window').width/2 -10,
-            // 设置高度
-            height:280,
-            marginLeft:5,
-            marginRight:5,
-            // 设置图片填充模式
-            resizeMode:'contain'
-    },
-    textStyle:{
-            color:'#212121',
-            textAlign:'center'
-    }
+  viewStyle: {
+    borderColor: '#efefef',
+    borderStyle: ('solid'),
+    borderWidth: 1
+  },
+  imgStyle: {
+    // 设置宽度
+    width: Dimensions.get('window').width / 2 - 10,
+    // 设置高度
+    height: 280,
+    marginLeft: 5,
+    marginRight: 5,
+    // 设置图片填充模式
+    resizeMode: 'contain'
+  },
+  textStyle: {
+    color: '#212121',
+    textAlign: 'center'
+  }
 });
 
 const IMAGE_DATA = [
@@ -69,8 +74,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/港囧.jpg",
     "baiduyun": "http://pan.baidu.com/s/1i3o6q7j",
     "yunPassword": "百度网盘(提取码：zf7q)",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"412"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "412"
   },
   {
     "type": "国产电影",
@@ -80,8 +85,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/刺客聂隐娘封面.jpg",
     "baiduyun": "http://pan.baidu.com/s/1mgjG4R2",
     "yunPassword": "百度网盘(提取码：x2d6)",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"428"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "428"
   },
   {
     "type": "欧美电影",
@@ -91,8 +96,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/军犬麦克斯封面.jpg",
     "baiduyun": "http://pan.baidu.com/s/1i3CSLd7",
     "yunPassword": "百度网盘(提取码：knjg)",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"405"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "405"
   },
   {
     "type": "国产电影",
@@ -102,8 +107,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/白雪公主之神秘爸爸封面.jpg",
     "baiduyun": "http://pan.baidu.com/s/1dDx1VSt",
     "yunPassword": "百度网盘(提取码：wv9c)",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"429"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "429"
   },
   {
     "type": "国产电影",
@@ -113,8 +118,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/大变局之梦回甲午.jpg",
     "baiduyun": "http://pan.baidu.com/s/1mgjG4S4",
     "yunPassword": "百度网盘(提取码：4djl)",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"428"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "428"
   },
   {
     "type": "日韩电影",
@@ -124,8 +129,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/白河夜船.jpg",
     "baiduyun": "http://pan.baidu.com/s/1ntthKH7",
     "yunPassword": "百度网盘(提取码：os1t)",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"424"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "424"
   },
   {
     "type": "日韩电影",
@@ -135,8 +140,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/迎风而立的狮子封面.jpg",
     "baiduyun": "http://pan.baidu.com/s/1qW46Z4g",
     "yunPassword": "百度网盘(提取码：2v41)",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"425"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "425"
   },
   {
     "type": "欧美电影",
@@ -146,8 +151,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/纸镇封面.jpg",
     "baiduyun": "http://pan.baidu.com/s/1jGCQ5hk",
     "yunPassword": "百度网盘(提取码：evf2)",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"450"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "450"
   },
   {
     "type": "欧美电影",
@@ -157,8 +162,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/吸血夜惊魂封面.jpg",
     "baiduyun": "http://pan.baidu.com/s/1i3nQa6D",
     "yunPassword": "百度网盘(提取码：f6re)",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"504"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "504"
   },
   {
     "type": "日韩电影",
@@ -168,8 +173,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/屌丝骑士封面.jpg",
     "baiduyun": "http://pan.baidu.com/s/1o63UTXS",
     "yunPassword": "百度网盘(提取码：aaze)",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"423"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "423"
   },
   {
     "type": "日韩电影",
@@ -179,8 +184,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/新宿天鹅封面.jpg",
     "baiduyun": "http://pan.baidu.com/s/1o6L5QKM",
     "yunPassword": "百度网盘(提取码：vxkc)",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"423"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "423"
   },
   {
     "type": "欧美电影",
@@ -190,8 +195,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/麦斯卡：寻找英雄封面.jpg",
     "baiduyun": "http://pan.baidu.com/s/1sj44GNF",
     "yunPassword": "百度网盘(提取码：zgby)",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"424"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "424"
   },
   {
     "type": "欧美电影",
@@ -201,8 +206,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/我唾弃你的坟墓3：复仇在我封面.jpg",
     "baiduyun": "http://pan.baidu.com/s/1sj0081Z",
     "yunPassword": "百度网盘(提取码：7az9)",
-    "imageOfMovieHeight":"767",
-    "imageOfMovieWidth":"594"
+    "imageOfMovieHeight": "767",
+    "imageOfMovieWidth": "594"
   },
   {
     "type": "国产电影",
@@ -212,8 +217,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/恋爱中的城市.jpg",
     "baiduyun": "http://pan.baidu.com/s/1bnluepL",
     "yunPassword": "百度网盘(提取码：itmt)",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"428"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "428"
   },
   {
     "type": "国产电影",
@@ -223,8 +228,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/情剑.jpg",
     "baiduyun": "http://pan.baidu.com/s/1eQfiqNg",
     "yunPassword": "百度网盘(提取码：9t7u)",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"429"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "429"
   },
   {
     "type": "欧美电影",
@@ -234,8 +239,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/爷们些封面.jpg",
     "baiduyun": "http://pan.baidu.com/s/1jGfFYIi",
     "yunPassword": "百度网盘(提取码：5b6v)",
-    "imageOfMovieHeight":"984",
-    "imageOfMovieWidth":"690"
+    "imageOfMovieHeight": "984",
+    "imageOfMovieWidth": "690"
   },
   {
     "type": "日韩电影",
@@ -245,8 +250,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/国际市场封面.jpg",
     "baiduyun": "http://pan.baidu.com/s/1o6pHlua",
     "yunPassword": "百度网盘(提取码：y6fp)",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"421"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "421"
   },
   {
     "type": "国产电影",
@@ -256,8 +261,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/三城记封面.jpg",
     "baiduyun": "http://pan.baidu.com/s/1eAxrS",
     "yunPassword": "百度网盘(提取码：xlb3)",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"429"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "429"
   },
   {
     "type": "国产电影",
@@ -267,8 +272,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/我是奋青封面.jpg",
     "baiduyun": "http://pan.baidu.com/s/1i3F9QPR",
     "yunPassword": "百度网盘(提取码：vjjc)",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"428"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "428"
   },
   {
     "type": "欧美电影",
@@ -278,8 +283,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/格蕾丝煽动成功封面.jpg",
     "baiduyun": "http://pan.baidu.com/s/1dD9CvkP",
     "yunPassword": "百度网盘(提取码：4t6x)",
-    "imageOfMovieHeight":"592",
-    "imageOfMovieWidth":"474"
+    "imageOfMovieHeight": "592",
+    "imageOfMovieWidth": "474"
   },
   {
     "type": "日韩电影",
@@ -289,8 +294,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/再见金钱，前往贫困村封面.jpg",
     "baiduyun": "http://pan.baidu.com/s/1pJ7Waz5",
     "yunPassword": "百度网盘(提取码：hjo1)",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"424"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "424"
   },
   {
     "type": "日韩电影",
@@ -300,8 +305,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/拉链 桃色丑闻封面.jpg",
     "baiduyun": "http://pan.baidu.com/s/1dDwff6T",
     "yunPassword": "百度网盘(提取码：1du6)",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"404"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "404"
   },
   {
     "type": "港台电影",
@@ -311,8 +316,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/太平轮(下)：彼岸封面.jpg",
     "baiduyun": "http://pan.baidu.com/s/1jGvUJT8",
     "yunPassword": "百度网盘(提取码：7no6)",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"418"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "418"
   },
   {
     "type": "国产电影",
@@ -322,8 +327,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/桂宝之爆笑闯宇宙封面.jpg",
     "baiduyun": "http://pan.baidu.com/s/1gdJHtjP",
     "yunPassword": "百度网盘(提取码：hhrl)",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"429"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "429"
   },
   {
     "type": "日韩电影",
@@ -333,8 +338,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/思春期游戏.jpg",
     "baiduyun": "http://pan.baidu.com/s/1mgkvuIk",
     "yunPassword": "百度网盘(提取码：vq4g)",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"421"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "421"
   },
   {
     "type": "欧美电影",
@@ -344,8 +349,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/军情五处：利益之爭封面.jpg",
     "baiduyun": "http://pan.baidu.com/s/1hqrpalu",
     "yunPassword": "百度网盘(提取码：tczl)",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"429"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "429"
   },
   {
     "type": "国产电影",
@@ -355,8 +360,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/华丽上班族封面.jpg",
     "baiduyun": "http://pan.baidu.com/s/1mg1Wmww",
     "yunPassword": "百度网盘(提取码：wamx)",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"429"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "429"
   },
   {
     "type": "欧美电影",
@@ -366,8 +371,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/末日崩塌封面.jpg",
     "baiduyun": "http://pan.baidu.com/s/1hqCnFpy",
     "yunPassword": "百度网盘(提取码：g2gt)",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"421"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "421"
   },
   {
     "type": "欧美电影",
@@ -377,8 +382,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/侏罗纪世界封面.jpg",
     "baiduyun": "http://pan.baidu.com/s/1hq52dVI",
     "yunPassword": "百度网盘(提取码：betf)",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"420"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "420"
   },
   {
     "type": "欧美电影",
@@ -388,8 +393,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/终结者：创世纪封面.jpg",
     "baiduyun": "http://pan.baidu.com/s/1kTtQD3T",
     "yunPassword": "百度网盘(提取码：mgxu)",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"421"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "421"
   },
   {
     "type": "国产电影",
@@ -399,8 +404,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/百团大战封面.jpg",
     "baiduyun": "http://pan.baidu.com/s/1jGvU6FW",
     "yunPassword": "百度网盘(提取码：laxc)",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"428"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "428"
   },
   {
     "type": "欧美电影",
@@ -410,8 +415,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/碟中谍5：神秘国度封面.jpg",
     "baiduyun": "http://pan.baidu.com/s/1bnhVHAR",
     "yunPassword": "百度网盘(提取码：r6xw)",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"399"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "399"
   },
   {
     "type": "国产电影",
@@ -421,8 +426,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/十二公民封面.jpg",
     "baiduyun": "http://pan.baidu.com/s/1hXB7C",
     "yunPassword": "百度网盘(提取码：50cm)",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"450"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "450"
   },
   {
     "type": "欧美电影",
@@ -432,8 +437,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/明日世界封面.jpg",
     "baiduyun": "http://pan.baidu.com/s/1ntlEWxb",
     "yunPassword": "百度网盘(提取码：f4sy)",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"450"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "450"
   },
   {
     "type": "日韩电影",
@@ -443,8 +448,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/暗杀教室封面.jpg",
     "baiduyun": "http://pan.baidu.com/s/1bn3AkMz",
     "yunPassword": "百度网盘(提取码：v5cj)",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"337"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "337"
   },
   {
     "type": "欧美电影",
@@ -454,8 +459,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/未成年之欲封面.jpg",
     "baiduyun": "http://pan.baidu.com/s/1i3fHzvf",
     "yunPassword": "百度网盘(提取码：9ae7)",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"416"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "416"
   },
   {
     "type": "欧美电影",
@@ -465,8 +470,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/堕落色戒截图.png",
     "baiduyun": "http://pan.baidu.com/s/1nt3VuDb",
     "yunPassword": "百度网盘(提取码：3jbq)",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"524"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "524"
   },
   {
     "type": "国产电影",
@@ -476,8 +481,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/无脚鸟封面.jpg",
     "baiduyun": "http://pan.baidu.com/s/1bn6Yb63",
     "yunPassword": "百度网盘(提取码：75n7)",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"420"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "420"
   },
   {
     "type": "欧美电影",
@@ -487,8 +492,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/燃烧的亡魂封面.jpg",
     "baiduyun": "http://pan.baidu.com/s/1mglGLpI",
     "yunPassword": "百度网盘(提取码：gbz7)",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"425"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "425"
   },
   {
     "type": "日韩电影",
@@ -498,8 +503,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/二十封面.jpg",
     "baiduyun": "http://pan.baidu.com/s/1ntMS4Db",
     "yunPassword": "百度网盘(提取码：31up)",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"418"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "418"
   },
   {
     "type": "欧美电影",
@@ -509,8 +514,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/糟糕的夜晚封面.jpg",
     "baiduyun": "http://pan.baidu.com/s/1bndRCAj",
     "yunPassword": "百度网盘(提取码：4trm)",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"400"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "400"
   },
   {
     "type": "国产电影",
@@ -520,8 +525,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/小西天狄道传奇封面.jpg",
     "baiduyun": "http://pan.baidu.com/s/1eQdL0l0",
     "yunPassword": "百度网盘(提取码：p7w4)",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"429"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "429"
   },
   {
     "type": "日韩电影",
@@ -531,8 +536,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/朝鲜名侦探：奴隶的女儿封面.jpg",
     "baiduyun": "http://pan.baidu.com/s/1i3k0ShJ",
     "yunPassword": "百度网盘(提取码：zwcm)",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"420"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "420"
   },
   {
     "type": "欧美电影",
@@ -542,8 +547,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/安乐乡封面.jpg",
     "baiduyun": "http://pan.baidu.com/s/1nwT9k",
     "yunPassword": "百度网盘(提取码：zf9j)",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"423"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "423"
   },
   {
     "type": "日韩电影",
@@ -553,8 +558,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/名侦探柯南：业火的向日葵封面.jpg",
     "baiduyun": "http://pan.baidu.com/s/1qWqYhpq",
     "yunPassword": "百度网盘(提取码：21ue)",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"419"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "419"
   },
   {
     "type": "欧美电影",
@@ -564,8 +569,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/掘火者封面.jpg",
     "baiduyun": "http://pan.baidu.com/s/1qWN2lKK",
     "yunPassword": "百度网盘(提取码：q3wt)",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"404"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "404"
   },
   {
     "type": "港台电影",
@@ -575,8 +580,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/沙西米封面.jpg",
     "baiduyun": "http://pan.baidu.com/s/1o66BmGE",
     "yunPassword": "百度网盘(提取码：9ymv)",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"419"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "419"
   },
   {
     "type": "国产电影",
@@ -586,8 +591,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/七月半之恐怖宿舍封面.jpg",
     "baiduyun": "http://pan.baidu.com/s/1i3APhMP",
     "yunPassword": "百度网盘(提取码：oagk)",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"429"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "429"
   },
   {
     "type": "欧美电影",
@@ -597,8 +602,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/狐狸猎手封面.jpg",
     "baiduyun": "http://pan.baidu.com/s/1nt7tfIh",
     "yunPassword": "百度网盘(提取码：zz2g)",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"426"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "426"
   },
   {
     "type": "欧美电影",
@@ -608,8 +613,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/六年之痒截图.png",
     "baiduyun": "http://pan.baidu.com/s/1eQ4P48E",
     "yunPassword": "百度网盘(提取码：i089)",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"404"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "404"
   },
   {
     "type": "日韩电影",
@@ -619,8 +624,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/聚会的目的截图.png",
     "baiduyun": "http://pan.baidu.com/s/1jGpis8u",
     "yunPassword": "百度网盘(提取码：xbwb)",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"400"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "400"
   },
   {
     "type": "欧美电影",
@@ -630,8 +635,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/12回合3：致命禁闭封面.jpg",
     "baiduyun": "http://pan.baidu.com/s/1gdffa5X",
     "yunPassword": "百度网盘(提取码：qky5)",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"404"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "404"
   },
   {
     "type": "欧美电影",
@@ -641,8 +646,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/公主夜游记封面.jpg",
     "baiduyun": "http://pan.baidu.com/s/1bnbPxPt",
     "yunPassword": "百度网盘(提取码：wr3c)",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"426"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "426"
   },
   {
     "type": "日韩电影",
@@ -652,8 +657,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/闪烁的爱情封面.jpg",
     "baiduyun": "http://pan.baidu.com/s/1wQj0q",
     "yunPassword": "百度网盘(提取码：mfkd)",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"428"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "428"
   },
   {
     "type": "国产电影",
@@ -663,8 +668,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/捉妖记封面.jpg",
     "baiduyun": "http://pan.baidu.com/s/1sjGEo5f",
     "yunPassword": "百度网盘(提取码：naxo)",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"428"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "428"
   },
   {
     "type": "国产电影",
@@ -674,8 +679,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/煎饼侠截图.png",
     "baiduyun": "http://pan.baidu.com/s/1pJmqr6j",
     "yunPassword": "百度网盘(提取码：rx49)",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"429"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "429"
   },
   {
     "type": "日韩电影",
@@ -685,8 +690,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/火影忍者剧场版：终章截图.png",
     "baiduyun": "http://pan.baidu.com/s/1dnuhC",
     "yunPassword": "百度网盘(提取码：jnp9)",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"411"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "411"
   },
   {
     "type": "欧美电影",
@@ -696,8 +701,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/心在彼处封面.jpg",
     "baiduyun": "http://pan.baidu.com/s/1qWj6uRy",
     "yunPassword": "百度网盘(提取码：7aog)",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"425"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "425"
   },
   {
     "type": "日韩电影",
@@ -707,8 +712,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/青春之旅 真人版截图.png",
     "baiduyun": "http://pan.baidu.com/s/1qWCCBvQ",
     "yunPassword": "百度网盘(提取码：5wqp)",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"424"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "424"
   },
   {
     "type": "欧美电影",
@@ -718,8 +723,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/这里的黎明静悄悄封面.jpg",
     "baiduyun": "http://pan.baidu.com/s/1ntCIF25",
     "yunPassword": "百度网盘(提取码：k71q)",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"406"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "406"
   },
   {
     "type": "欧美电影",
@@ -729,8 +734,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/开战日封面.jpg",
     "baiduyun": "http://pan.baidu.com/s/1eQ4Pwmm",
     "yunPassword": "百度网盘(提取码：9hat)",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"404"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "404"
   },
   {
     "type": "日韩电影",
@@ -740,8 +745,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/唇上之歌截图.png",
     "baiduyun": "http://pan.baidu.com/s/1nt7sWOh",
     "yunPassword": "百度网盘(提取码：jave)",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"429"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "429"
   },
   {
     "type": "国产电影",
@@ -751,8 +756,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/有一个地方只有我们知道封面.jpg",
     "baiduyun": "http://pan.baidu.com/s/1bnHMIf1",
     "yunPassword": "百度网盘(提取码：wuft)",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"420"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "420"
   },
   {
     "type": "欧美电影",
@@ -762,8 +767,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/星际迷航：叛徒截图.png",
     "baiduyun": "http://pan.baidu.com/s/1i3D6JdV",
     "yunPassword": "百度网盘(提取码：hord)",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"395"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "395"
   },
   {
     "type": "国产电影",
@@ -773,8 +778,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/我是大熊猫之熊猫大侠封面.jpg",
     "baiduyun": "http://pan.baidu.com/s/1mgrLY5M",
     "yunPassword": "百度网盘(提取码：svyx)",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"429"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "429"
   },
   {
     "type": "国产电影",
@@ -784,8 +789,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/破风截图.png",
     "baiduyun": "http://pan.baidu.com/s/1eQ0LCOi",
     "yunPassword": "百度网盘(提取码：2ve1)",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"420"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "420"
   },
   {
     "type": "欧美电影",
@@ -795,8 +800,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/神奇四侠2015截图.png",
     "baiduyun": "http://pan.baidu.com/s/1i3EmGDZ",
     "yunPassword": "百度网盘(提取码：jvdc)",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"415"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "415"
   },
   {
     "type": "国产电影",
@@ -806,8 +811,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/一路向前截图.png",
     "baiduyun": "http://pan.baidu.com/s/1eQjkEDc",
     "yunPassword": "百度网盘(提取码：5jaq)",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"429"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "429"
   },
   {
     "type": "日韩电影",
@@ -817,8 +822,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/生缝寸尺心封面.jpg",
     "baiduyun": "http://pan.baidu.com/s/1mgkuwkg",
     "yunPassword": "百度网盘(提取码：0mxl)",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"426"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "426"
   },
   {
     "type": "国产电影",
@@ -828,8 +833,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/命中注定截图.png",
     "baiduyun": "http://pan.baidu.com/share/init?shareid=4164124490",
     "yunPassword": "3idd",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"429"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "429"
   },
   {
     "type": "国产电影",
@@ -839,8 +844,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/宅女侦探桂香封面.jpg",
     "baiduyun": "http://pan.baidu.com/s/1ntKQcOx",
     "yunPassword": "百度网盘(提取码：og2r)",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"401"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "401"
   },
   {
     "type": "日韩电影",
@@ -850,8 +855,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/发誓不会忘记你封面.jpg",
     "baiduyun": "http://pan.baidu.com/s/1ntksoA1",
     "yunPassword": "百度网盘(提取码：wel4)",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"423"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "423"
   },
   {
     "type": "国产电影",
@@ -861,8 +866,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/张震讲故事之鬼迷心窍截图.png",
     "baiduyun": "http://pan.baidu.com/s/1sjzJfUd",
     "yunPassword": "百度网盘(提取码：s3l8)",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"428"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "428"
   },
   {
     "type": "欧美电影",
@@ -872,8 +877,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/谍影特工 十一月杀手封面.jpg",
     "baiduyun": "http://pan.baidu.com/s/1c0g6McS",
     "yunPassword": "百度网盘(提取码：ltnj)",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"419"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "419"
   },
   {
     "type": "欧美电影",
@@ -883,8 +888,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/查泰莱夫人的情人封面.jpg",
     "baiduyun": "http://pan.baidu.com/s/1kTs3Okn",
     "yunPassword": "百度网盘(提取码：4c1z)",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"428"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "428"
   },
   {
     "type": "日韩电影",
@@ -894,8 +899,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/深情触摸截图.png",
     "baiduyun": "http://pan.baidu.com/s/1qWKdOew",
     "yunPassword": "百度网盘(提取码：8v4c)",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"424"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "424"
   },
   {
     "type": "欧美电影",
@@ -905,8 +910,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/复仇者联盟2：奥创纪元截图.png",
     "baiduyun": "http://pan.baidu.com/s/1eQm8nHS",
     "yunPassword": "百度网盘(提取码：cxv7)",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"424"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "424"
   },
   {
     "type": "欧美电影",
@@ -916,8 +921,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/少年透明人封面.jpg",
     "baiduyun": "http://pan.baidu.com/s/1i3s7HZn",
     "yunPassword": "百度网盘(提取码：vb67)",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"420"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "420"
   },
   {
     "type": "欧美电影",
@@ -927,8 +932,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/神秘感染：第二阶段封面.jpg",
     "baiduyun": "http://pan.baidu.com/s/1bnuLOuz",
     "yunPassword": "百度网盘(提取码：otrp)",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"412"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "412"
   },
   {
     "type": "欧美电影",
@@ -938,8 +943,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/弗雷斯诺封面.jpg",
     "baiduyun": "http://pan.baidu.com/s/1t1Sb8",
     "yunPassword": "百度网盘(提取码：900l)",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"405"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "405"
   },
   {
     "type": "欧美电影",
@@ -949,8 +954,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/糟糕的兄弟情封面.jpg",
     "baiduyun": "http://pan.baidu.com/s/1pJvJo0N",
     "yunPassword": "百度网盘(提取码：ahkq)",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"423"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "423"
   },
   {
     "type": "欧美电影",
@@ -960,8 +965,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/非我封面.jpg",
     "baiduyun": "http://pan.baidu.com/s/1pJOj407",
     "yunPassword": "百度网盘(提取码：4sh1)",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"424"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "424"
   },
   {
     "type": "日韩电影",
@@ -971,8 +976,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/烈性摔跤封面.jpg",
     "baiduyun": "http://pan.baidu.com/s/1bnmEjkr",
     "yunPassword": "百度网盘(提取码：lbas)",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"399"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "399"
   },
   {
     "type": "日韩电影",
@@ -982,8 +987,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/恋爱的味道封面.jpg",
     "baiduyun": "http://pan.baidu.com/s/1foAMa",
     "yunPassword": "百度网盘(提取码：zrd2)",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"420"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "420"
   },
   {
     "type": "国产电影",
@@ -993,8 +998,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/恐怖游泳馆封面.jpg",
     "baiduyun": "http://pan.baidu.com/s/1pJmpDCv",
     "yunPassword": "百度网盘(提取码：nu12)",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"428"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "428"
   },
   {
     "type": "日韩电影",
@@ -1004,8 +1009,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/渴望封面.jpg",
     "baiduyun": "http://pan.baidu.com/s/1eQEsoNo",
     "yunPassword": "百度网盘(提取码：bv6p)",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"420"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "420"
   },
   {
     "type": "欧美电影",
@@ -1015,8 +1020,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/破发点封面.jpg",
     "baiduyun": "http://pan.baidu.com/s/1pJHxHc3",
     "yunPassword": "百度网盘(提取码：l9ye)",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"405"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "405"
   },
   {
     "type": "国产电影",
@@ -1026,8 +1031,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/王朝的女人·杨贵妃封面.jpg",
     "baiduyun": "http://pan.baidu.com/s/1eQhinQi",
     "yunPassword": "百度网盘(提取码：7fwv)",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"430"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "430"
   },
   {
     "type": "国产电影",
@@ -1037,8 +1042,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/男人制造封面.jpg",
     "baiduyun": "http://pan.baidu.com/s/1dD2iWQd",
     "yunPassword": "百度网盘(提取码：3y7e)",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"429"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "429"
   },
   {
     "type": "国产电影",
@@ -1048,8 +1053,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/等爱归来封面.jpg",
     "baiduyun": "http://pan.baidu.com/s/1hqIXPOw",
     "yunPassword": "百度网盘(提取码：k7a4)",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"424"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "424"
   },
   {
     "type": "日韩电影",
@@ -1059,8 +1064,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/危险的传言封面.jpg",
     "baiduyun": "http://pan.baidu.com/s/1jGlJL5s",
     "yunPassword": "百度网盘(提取码：0jlz)",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"420"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "420"
   },
   {
     "type": "欧美电影",
@@ -1070,8 +1075,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/魔力麦克2截图.png",
     "baiduyun": "http://pan.baidu.com/s/1jGAgqdK",
     "yunPassword": "百度网盘(提取码：wnw5)",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"404"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "404"
   },
   {
     "type": "港台电影",
@@ -1081,8 +1086,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/谜城封面.jpg",
     "baiduyun": "http://pan.baidu.com/s/1dD8o87J",
     "yunPassword": "百度网盘(提取码：t3nu)",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"429"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "429"
   },
   {
     "type": "欧美电影",
@@ -1092,8 +1097,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/神探巴克希封面.jpg",
     "baiduyun": "http://pan.baidu.com/s/1o67WkeI",
     "yunPassword": "百度网盘(提取码：y0fk)",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"437"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "437"
   },
   {
     "type": "欧美电影",
@@ -1103,8 +1108,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/阿提克斯研究所封面.jpg",
     "baiduyun": "http://pan.baidu.com/s/1bnyjn6f",
     "yunPassword": "百度网盘(提取码：clwq)",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"428"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "428"
   },
   {
     "type": "欧美电影",
@@ -1114,8 +1119,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/希望生长的地方封面.jpg",
     "baiduyun": "http://pan.baidu.com/s/1bnmDOmV",
     "yunPassword": "百度网盘(提取码：mawa)",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"405"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "405"
   },
   {
     "type": "欧美电影",
@@ -1125,8 +1130,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/小叮当：永无兽传奇截图.png",
     "baiduyun": "http://pan.baidu.com/s/1kTmx547",
     "yunPassword": "百度网盘(提取码：sjk1)",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"400"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "400"
   },
   {
     "type": "日韩电影",
@@ -1136,8 +1141,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/东京婚约封面.jpg",
     "baiduyun": "http://pan.baidu.com/s/1pJN3glP",
     "yunPassword": "百度网盘(提取码：qj3d)",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"413"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "413"
   },
   {
     "type": "欧美电影",
@@ -1147,8 +1152,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/布朗夫人的儿子们大电影封面.jpg",
     "baiduyun": "http://pan.baidu.com/s/1gdpn3yV",
     "yunPassword": "百度网盘(提取码：ht7m)",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"406"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "406"
   },
   {
     "type": "欧美电影",
@@ -1158,8 +1163,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/爱与慈悲封面.jpg",
     "baiduyun": "http://pan.baidu.com/s/1gd2eCy3",
     "yunPassword": "百度网盘(提取码：3fv0)",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"450"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "450"
   },
   {
     "type": "欧美电影",
@@ -1169,8 +1174,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/故事的故事封面.jpg",
     "baiduyun": "http://pan.baidu.com/s/1bn16Os3",
     "yunPassword": "百度网盘(提取码：fm2i)",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"442"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "442"
   },
   {
     "type": "欧美电影",
@@ -1180,8 +1185,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/祭坛截图.png",
     "baiduyun": "http://pan.baidu.com/s/1c0AYlwO",
     "yunPassword": "百度网盘(提取码：kpne)",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"400"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "400"
   },
   {
     "type": "欧美电影",
@@ -1191,8 +1196,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/蓝调女王封面.jpg",
     "baiduyun": "http://pan.baidu.com/s/1mg8FUdE",
     "yunPassword": "百度网盘(提取码：l6a6)",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"405"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "405"
   },
   {
     "type": "国产电影",
@@ -1202,8 +1207,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/坏姐姐之拆婚联盟封面.jpg",
     "baiduyun": "http://pan.baidu.com/s/1i3GnBBv",
     "yunPassword": "百度网盘(提取码：gop5)",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"428"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "428"
   },
   {
     "type": "日韩电影",
@@ -1213,8 +1218,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/嘘！禁止想象！Nineteen封面.jpg",
     "baiduyun": "http://pan.baidu.com/s/1kTCLCqz",
     "yunPassword": "百度网盘(提取码：gj0d)",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"394"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "394"
   },
   {
     "type": "国产电影",
@@ -1224,8 +1229,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/我是路人甲封面.jpg",
     "baiduyun": "http://pan.baidu.com/s/1qWrCIM4",
     "yunPassword": "百度网盘(提取码：chw1)",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"428"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "428"
   },
   {
     "type": "国产电影",
@@ -1235,8 +1240,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/奥拉星：进击圣殿封面.jpg",
     "baiduyun": "http://pan.baidu.com/s/1i34co53",
     "yunPassword": "百度网盘(提取码：yg2y)",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"428"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "428"
   },
   {
     "type": "欧美电影",
@@ -1246,8 +1251,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/末日崩塌封面.jpg",
     "baiduyun": "http://pan.baidu.com/s/1bnjpFg7",
     "yunPassword": "百度网盘(提取码：4ioa)",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"421"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "421"
   },
   {
     "type": "欧美电影",
@@ -1257,8 +1262,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/小黄人大眼萌封面.jpg",
     "baiduyun": "http://pan.baidu.com/s/1o6Bt9G2",
     "yunPassword": "百度网盘(提取码：9mmi)",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"420"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "420"
   },
   {
     "type": "欧美电影",
@@ -1268,8 +1273,8 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/7分钟封面.jpg",
     "baiduyun": "http://pan.baidu.com/s/1qWj5g08",
     "yunPassword": "百度网盘(提取码：w61s)",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"404"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "404"
   },
   {
     "type": "欧美电影",
@@ -1279,7 +1284,7 @@ const IMAGE_DATA = [
     "printscreen": "http://abben-picture.oss-cn-shenzhen.aliyuncs.com/成人初学者截图.png",
     "baiduyun": "http://pan.baidu.com/s/1kT5tV6Z",
     "yunPassword": "百度网盘(提取码：fvrp)",
-    "imageOfMovieHeight":"600",
-    "imageOfMovieWidth":"405"
+    "imageOfMovieHeight": "600",
+    "imageOfMovieWidth": "405"
   }
 ]
