@@ -17,7 +17,7 @@
 
 2、在手机上通过Expo app扫描下面的二维码然后预览yunziyuanESR_RN
 
-  ![](http://wx1.sinaimg.cn/mw690/71a00955gy1fgfd1fg9ewj206y06y3yf.jpg)
+  ![](http://wx4.sinaimg.cn/mw690/71a00955gy1fhi7o7kupdj204g04gdfm.jpg)
 
 
 ### 演示
