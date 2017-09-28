@@ -12,7 +12,7 @@ import App from './src/App';
 export default class yunziyuanESR_RN extends Component {
   render() {
     return (
-     <App/>
+      <App />
     );
   }
 }

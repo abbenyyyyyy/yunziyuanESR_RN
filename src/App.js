@@ -6,7 +6,7 @@ import {
     Image
 } from 'react-native';
 
-import { StackNavigator, TabNavigator, TabBarTop  } from 'react-navigation';
+import { StackNavigator, TabNavigator, TabBarTop } from 'react-navigation';
 
 import appIcon from './images/app_icon.png';
 import AllMoviesScreen from './AllMoviesScreen';
@@ -18,7 +18,7 @@ import MovieDetailsScreen from './MovieDetailsScreen';
 export default class App extends Component {
     render() {
         return (
-            <Navigator/>
+            <Navigator />
         );
     };
 }
@@ -43,7 +43,7 @@ const Tab = TabNavigator(
                 tabBarLabel: '日韩电影'
             })
         },
-        Mine:{
+        Mine: {
             screen: ChineseMoviesScreen,
             navigationOptions: ({ navigation }) => ({
                 tabBarLabel: '国产电影'
@@ -51,16 +51,16 @@ const Tab = TabNavigator(
         }
     },
     {
-        tabBarComponent: TabBarTop ,
+        tabBarComponent: TabBarTop,
         tabBarPosition: 'bottom',
         swipeEnabled: true,
         animationEnabled: false,
         lazy: true,
         tabBarOptions: {
             activeTintColor: '#fff',
-            inactiveTintColor:'#757575',
-            scrollEnabled :false,
-            indicatorStyle: {height: 0},
+            inactiveTintColor: '#757575',
+            scrollEnabled: false,
+            indicatorStyle: { height: 0 },
             style: {
                 backgroundColor: '#673AB7',
             }
@@ -70,17 +70,17 @@ const Tab = TabNavigator(
 
 const Navigator = StackNavigator(
     {
-        MainHome:{
-            screen:Tab,
-            navigationOptions:{
+        MainHome: {
+            screen: Tab,
+            navigationOptions: {
                 headerTitle: '云资源ESR',
-                headerTitleStyle:{color:'#fff'},
+                headerTitleStyle: { color: '#fff' },
                 headerStyle: { backgroundColor: '#512DA8' },
                 headerLeft: <Image source={appIcon} style={{ width: 35, height: 35, marginLeft: 10 }} />,
             }
         },
-        MovieDetailsScreen:{
-            screen:MovieDetailsScreen,
+        MovieDetailsScreen: {
+            screen: MovieDetailsScreen,
         }
     },
 );
