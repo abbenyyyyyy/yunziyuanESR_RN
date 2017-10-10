@@ -6,13 +6,13 @@ export default class MovieDetailsScreen extends React.Component {
     title: navigation.state.params.item.name,
     headerTitleStyle: { color: '#fff' },
     headerStyle: { backgroundColor: '#512DA8' },
-    headerLeft: 
-      <TouchableHighlight style={{ width: 35, height: 35, marginLeft: 10, alignItems: 'center', justifyContent: 'center'}}
-        activeOpacity={0.8}
-        underlayColor='#512DA8'
-        onPress={() => navigation.goBack(null)} >
-          <Image source={require('./images/navigation_back_white.png')} style={{ width: 25, height: 25 }} />
-      </TouchableHighlight>
+    headerLeft:
+    <TouchableHighlight style={{ width: 35, height: 35, marginLeft: 10, alignItems: 'center', justifyContent: 'center' }}
+      activeOpacity={0.8}
+      underlayColor='#512DA8'
+      onPress={() => navigation.goBack(null)} >
+      <Image source={require('./images/navigation_back_white.png')} style={{ width: 25, height: 25 }} />
+    </TouchableHighlight>
     ,
   });
 

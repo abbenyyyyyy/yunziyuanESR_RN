@@ -40,8 +40,14 @@ or ``
  react-native run-android
 ``
 
+### 更新信息
+
+v2.00：增加右上角按钮点击显示版本信息功能。
+
+v1.00：基本功能实现。
+
 ### 计划改进
-* 利用Platform判断平台然后更新APP
+* 利用Platform判断平台然后利用codepush热更新APP
 
 ### 依赖库
  * [React Navigation](https://github.com/bumptech/glide)

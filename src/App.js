@@ -1,10 +1,5 @@
 import React, { Component } from 'react';
-import {
-    StyleSheet,
-    Text,
-    View,
-    Image
-} from 'react-native';
+import { StyleSheet, Text, View, Image, Alert, TouchableOpacity, Platform } from 'react-native';
 
 import { StackNavigator, TabNavigator, TabBarTop } from 'react-navigation';
 
@@ -14,6 +9,7 @@ import EuramericanMoviesScreen from './EuramericanMoviesScreen';
 import JanpanAndKoreaMoviesScreen from './JanpanAndKoreaMoviesScreen';
 import ChineseMoviesScreen from './ChineseMoviesScreen';
 import MovieDetailsScreen from './MovieDetailsScreen';
+import AndroidAppVersionModule from './module/AndroidAppVersionModule';
 
 export default class App extends Component {
     render() {
@@ -68,6 +64,25 @@ const Tab = TabNavigator(
     }
 );
 
+async function showAppVersion() {
+    try {
+        var message;
+        if (Platform.OS === 'ios') {
+            message = '当前版本：未知。';
+        } else {
+            var {
+                appVersion,
+              } = await AndroidAppVersionModule.getAppVersion();
+            message = '当前版本：' + appVersion;
+        }
+
+        Alert.alert('版本信息', message, [{ text: '确定', onPress: () => console.log('确定'), style: 'cancel' }],
+            { cancelable: false });
+    } catch (e) {
+        console.error(e);
+    }
+}
+
 const Navigator = StackNavigator(
     {
         MainHome: {
@@ -77,6 +92,9 @@ const Navigator = StackNavigator(
                 headerTitleStyle: { color: '#fff' },
                 headerStyle: { backgroundColor: '#512DA8' },
                 headerLeft: <Image source={appIcon} style={{ width: 35, height: 35, marginLeft: 10 }} />,
+                headerRight: <TouchableOpacity onPress={() => showAppVersion()} >
+                    <Image source={require('./images/about_icon.png')} style={{ width: 20, height: 20, marginRight: 10 }} />
+                </TouchableOpacity>,
             }
         },
         MovieDetailsScreen: {
