@@ -10,7 +10,7 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * Created by Shaolin on 2017/10/10.
+ * Created by abben on 2017/10/10.
  */
 
 public class CustomReactPackage implements ReactPackage {

@@ -88,7 +88,7 @@ const Navigator = StackNavigator(
         MainHome: {
             screen: Tab,
             navigationOptions: {
-                headerTitle: '云资源ESR',
+                headerTitle: '云资源ESR热更新后',
                 headerTitleStyle: { color: '#fff' },
                 headerStyle: { backgroundColor: '#512DA8' },
                 headerLeft: <Image source={appIcon} style={{ width: 35, height: 35, marginLeft: 10 }} />,

@@ -12,7 +12,7 @@ import com.facebook.react.bridge.WritableMap;
 import com.facebook.react.uimanager.IllegalViewOperationException;
 
 /**
- * Created by Shaolin on 2017/10/10.
+ * Created by abben on 2017/10/10.
  */
 
 public class AndroidAppVersionModule extends ReactContextBaseJavaModule {
