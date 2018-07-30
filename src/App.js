@@ -72,7 +72,7 @@ async function showAppVersion() {
         } else {
             var {
                 appVersion,
-              } = await AndroidAppVersionModule.getAppVersion();
+            } = await AndroidAppVersionModule.getAppVersion();
             message = '当前版本：' + appVersion;
         }
 

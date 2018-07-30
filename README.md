@@ -52,7 +52,7 @@ v1.0.0：基本功能实现。
 * 利用Platform判断平台然后利用codepush热更新APP
 
 ### 依赖库
- * [React Navigation](https://github.com/bumptech/glide)
+ * [React Navigation](https://github.com/react-navigation/react-navigation)
  * [code-push](http://microsoft.github.io/code-push/)
 
 
